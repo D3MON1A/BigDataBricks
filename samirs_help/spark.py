@@ -11,7 +11,7 @@ spark: SparkSession = SparkSession.builder.master("local[1]")\
 
 sc = SparkContext
 
-dfa = spark.read.option("multiline",'true').json("file:///home/consultant/Desktop/BigDataBricks/samirs_help/people.json")
+dfa = spark.read.option("multiline",'true').json("file:///home/consultant/Desktop/BigDataBricks/samirs_help/people2.json")
 df = dfa.withColumn('edptimestamp', F.current_timestamp().cast("string"))
 df.printSchema()
 df.show()
