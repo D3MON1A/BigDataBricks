@@ -1,5 +1,6 @@
 from pyspark.context import SparkContext
 from pyspark.sql.session import SparkSession
+from pyspark.sql import functions as F
 
 # spark-submit --packages org.apache.spark:spark-avro_2.11:2.4.4 004sparkTesting.py
 # command to pass.
@@ -10,7 +11,8 @@ spark: SparkSession = SparkSession.builder.master("local[1]")\
 
 sc = SparkContext
 
-df = spark.read.option("multiline",'true').json("file:///home/consultant/Desktop/BigDataBricks/samirs_help/people2.json")
+dfa = spark.read.option("multiline",'true').json("file:///home/consultant/Desktop/BigDataBricks/samirs_help/people.json")
+df = dfa.withColumn('edptimestamp', F.current_timestamp().cast("string"))
 df.printSchema()
 df.show()
 
@@ -29,5 +31,5 @@ df.write.format("parquet")\
 # .format("parquet")\
 # .load("/sparkTesting/")
 
-avroDf.printSchema()
-avroDf.show()
+# avroDf.printSchema()
+# avroDf.show()
