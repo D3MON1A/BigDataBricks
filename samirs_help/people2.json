@@ -1,0 +1,35 @@
+[{
+    "firstName": "Samuel",
+    "lastName": "Jameson",
+    "gender": "Male",
+    "age": "54",
+    "address": "45567 New York",
+    "phoneNumbers": "+17863454563",
+    "weight": "80 kg",
+    "height": "99cm",
+    "colorEyes": "Brown",
+    "colorHair": "Brown"
+    },{
+    "firstName": "Mary",
+    "lastName": "Gomez",
+    "gender": "Female",
+    "age": "38",
+    "address": "365367 Atlanta",
+    "phoneNumbers": "+17863344563",
+    "weight": "80 kg",
+    "height": "160 cm",
+    "colorEyes": "Blue",
+    "colorHair": "Green"
+    },{
+    "firstName": "Harold",
+    "lastName": "Smith",
+    "gender": "Male",
+    "age": "20",
+    "address": "3489 New Orleans",
+    "phoneNumbers": "+17863342653",
+    "weight": "100 kg",
+    "height": "180 cm",
+    "colorEyes": "Green",
+    "colorHair": "Blonde"
+    }
+    ]

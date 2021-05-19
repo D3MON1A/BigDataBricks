@@ -10,7 +10,7 @@ spark: SparkSession = SparkSession.builder.master("local[1]")\
 
 sc = SparkContext
 
-df = spark.read.option("multiline",'true').json("file:///home/consultant/Desktop/BigDataBricks/samirs_help/people.json")
+df = spark.read.option("multiline",'true').json("file:///home/consultant/Desktop/BigDataBricks/samirs_help/people2.json")
 df.printSchema()
 df.show()
 
