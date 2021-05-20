@@ -21,7 +21,7 @@ next_step = response.json()
 input_json = json.dumps(next_step)
 # print(next_step)
 
-producer.send("kafkaNba", input_json.encode('utf-8'))
+producer.send("kafkaNBA", input_json.encode('utf-8'))
 producer.flush()
 
 
