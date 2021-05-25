@@ -26,7 +26,7 @@ def makeIterable(rdd):
     if not rdd.isEmpty():
         df = spark.createDataFrame(rdd, schema=['home_team', 'visitor_team',])
         df.show()
-        df.write.saveAsTable(name ='NBAGAMES', format='hive', mode='append')
+        df.write.saveAsTable(name ='NBA.NBAGAMES', format='hive', mode='append')
         
         # df.write.mode('overwrite').saveAsTable('kafkaSpark.games')
         # df.write.partitionBy('year', 'month')
