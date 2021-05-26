@@ -17,19 +17,21 @@ ssc = StreamingContext(sc, 10)
 ks = KafkaUtils.createDirectStream(ssc, topics=['kafkaNBA'],kafkaParams={"bootstrap.servers": "localhost:9099", "auto.offset.reset": "smallest"})
 
 
-result1 = ks.map(lambda x: json.loads(x[1])).flatMap(lambda x: x['data'])
+result1 = ks.map(lambda x: json.loads(x[1])).flatMap(lambda x: x['data']).map(lambda x: x ['visitor_team'])
 result1.pprint()
 
 
 
 def makeIterable(rdd):
     if not rdd.isEmpty():
-        df = spark.createDataFrame(rdd, schema=['home_team', 'visitor_team',])
+        df = spark.createDataFrame(rdd, schema=['visitor_team','city', 'conference', 'division', 'full_name', 'id', 'name' ])
+        # df.select('home_team', 'visitor_team').show()
+        # df.write.partitionBy('home_team', 'visitor_team')
         df.show()
-        df.write.saveAsTable(name ='NBA.NBAGAMES', format='hive', mode='append')
+        df.write.saveAsTable(name ='nba.nbagames', format='hive', mode='append')
         
         # df.write.mode('overwrite').saveAsTable('kafkaSpark.games')
-        # df.write.partitionBy('year', 'month')
+       
 result1.foreachRDD(makeIterable)
 
 ssc.start()
