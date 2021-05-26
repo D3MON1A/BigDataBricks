@@ -25,12 +25,10 @@ result1.pprint()
 def makeIterable(rdd):
     if not rdd.isEmpty():
         df = spark.createDataFrame(rdd, schema=['visitor_team','city', 'conference', 'division', 'full_name', 'id', 'name' ])
-        # df.select('home_team', 'visitor_team').show()
-        # df.write.partitionBy('home_team', 'visitor_team')
         df.show()
         df.write.saveAsTable(name ='nba.nbagames', format='hive', mode='append')
         
-        # df.write.mode('overwrite').saveAsTable('kafkaSpark.games')
+        
        
 result1.foreachRDD(makeIterable)
 
