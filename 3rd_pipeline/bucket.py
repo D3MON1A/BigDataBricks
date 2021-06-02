@@ -6,8 +6,8 @@ from pyspark.sql.types import *
 
 
 mymongo = SparkSession.builder.appName("awsbucket")\
-.config("spark.mongodb.input.uri", "mongodb://127.0.0.1/bucket.example") \
-.config("spark.mongodb.output.uri", "mongodb://127.0.0.1/bucket.example") \
+.config("spark.mongodb.input.uri", "mongodb://127.0.0.1/bucket1.example1") \
+.config("spark.mongodb.output.uri", "mongodb://127.0.0.1/bucket1.example1") \
 .getOrCreate()
 
 s3 = boto3.resource('s3',
