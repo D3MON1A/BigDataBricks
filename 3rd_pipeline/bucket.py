@@ -34,5 +34,7 @@ df = mymongo.createDataFrame(rdd, schema)
 df.write.format("mongo").mode("overwrite").save()
 df.show()
 
+# spark-submit --packages org.mongodb.spark:mongo-spark-connector_2.11:2.4.2 bucket.py
+
  
         
