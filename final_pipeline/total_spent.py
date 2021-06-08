@@ -4,8 +4,8 @@ from pyspark.context import SparkContext
 from pyspark.sql.types import *
 
 mymongo = SparkSession.builder.appName("SpendByCustomerSorted")\
-.config("spark.mongodb.input.uri", "mongodb://127.0.0.1/customerorders.orders") \
-.config("spark.mongodb.output.uri", "mongodb://127.0.0.1/customerorders.orders") \
+.config("spark.mongodb.input.uri", "mongodb://127.0.0.1/customerorders.orders1") \
+.config("spark.mongodb.output.uri", "mongodb://127.0.0.1/customerorders.orders1") \
 .getOrCreate()
 
 sc= SparkContext.getOrCreate()
@@ -27,7 +27,7 @@ StructField("total_spent", StringType(), True)])
 
 
 
-df = mymongo.createDataFrame(schema)
+df = mymongo.createDataFrame(totalByCustomer, schema)
 df.write.format("mongo").mode("overwrite").save()
 df.show()
 
