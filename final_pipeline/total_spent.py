@@ -3,10 +3,11 @@ from pyspark.sql import SparkSession
 from pyspark.context import SparkContext
 from pyspark.sql.types import *
 
-mymongo = SparkSession.builder.appName("SpendByCustomerSorted")\
-.config("spark.mongodb.input.uri", "mongodb://127.0.0.1/customerorders.orders1") \
-.config("spark.mongodb.output.uri", "mongodb://127.0.0.1/customerorders.orders1") \
-.getOrCreate()
+
+mymongo = SparkSession.builder.appName("SpendByCustomer")\
+.config("spark.mongodb.output.uri","mongodb://mongo cloud path here") \
+.getOrCreate()      
+
 
 sc= SparkContext.getOrCreate()
 
@@ -18,17 +19,16 @@ input = sc.textFile("file:////home/consultant/Desktop/BigDataBricks/final_pipeli
 mappedInput = input.map(extractCustomerPricePairs)
 totalByCustomer = mappedInput.reduceByKey(lambda x, y: x + y)
 
-# results = totalByCustomer.collect()
-# for result in results:
-#     print(result)
 schema = StructType([\
 StructField("customers_orders", StringType(), True),\
 StructField("total_spent", StringType(), True)])
-
-
 
 df = mymongo.createDataFrame(totalByCustomer, schema)
 df.write.format("mongo").mode("overwrite").save()
 df.show()
 
 # spark-submit --packages org.mongodb.spark:mongo-spark-connector_2.11:2.4.2 total_spent.py
+
+
+
+
